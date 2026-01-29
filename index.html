@@ -2,11 +2,76 @@
 layout: default
 ---
 
-<p style="margin-bottom: 10px;">
+<style>
+  .contact-links {
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+  .contact-links a {
+    margin-right: 15px;
+  }
+
+  .publication-item {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    align-items: flex-start;
+  }
+
+  .publication-image {
+    flex-shrink: 0;
+    width: 200px;
+  }
+
+  .publication-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  .publication-content {
+    flex: 1;
+  }
+
+  .publication-content p {
+    margin-top: 8px;
+    margin-bottom: 0;
+  }
+
+  ol.publications {
+    list-style: none;
+    counter-reset: publication-counter;
+    padding-left: 0;
+  }
+
+  ol.publications > li {
+    counter-increment: publication-counter;
+    position: relative;
+  }
+
+  ol.publications > li::before {
+    content: counter(publication-counter) ".";
+    position: absolute;
+    left: -25px;
+    font-weight: normal;
+  }
+
+  @media (max-width: 768px) {
+    .publication-item {
+      flex-direction: column;
+    }
+    .publication-image {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+</style>
+
+<div class="contact-links">
   <a href="Resume.pdf" target="_blank">CV</a> |
   <a href="https://www.linkedin.com/in/mozesjacobs/" target="_blank">LinkedIn</a> |
   <a href="mailto:mozesjacobs@g.harvard.edu">Gmail</a>
-</p>
+</div>
 
 <h2>About</h2>
 <p>Hello! I am a third-year computer science PhD candidate at Harvard University,
@@ -36,50 +101,76 @@ layout: default
 
 <h2>Publications and Preprints</h2>
 
-<ol>
+<ol class="publications">
   <li>
-    <strong>Jacobs M.*</strong>, Fel T.*, Hakim R.*, Brondetta A., Ba D., Keller TA. (2025).<br>
-    <a href="https://arxiv.org/abs/2512.19941">
-      <cite>Block-Recurrent Dynamics in ViTs</cite>
-    </a><br>
-    <em>Accepted to ICLR 2026</em>.
-    <p>
-      <img src="raptor.png" alt="Raptor" style="width: 8cm; height: auto; margin: 10px 0;">
-      We introduce the Block-Recurrent Hypothesis (BRH), arguing that trained ViTs admit a block-recurrent depth
-      structure.
-      To validate this, we train recurrent surrogates called Raptor. We demonstrate that a Raptor model can recover
-      <strong>96% of DINOv2 ImageNet-1k linear probe accuracy in only 2 blocks</strong> while maintaining equivalent
-      computational cost.
-    </p>
+    <div class="publication-item">
+      <div class="publication-image">
+        <img src="raptor.png" alt="Raptor">
+      </div>
+      <div class="publication-content">
+        <strong>Jacobs M.*</strong>, Fel T.*, Hakim R.*, Brondetta A., Ba D., Keller TA. (2025).<br>
+        <a href="https://arxiv.org/abs/2512.19941">
+          <cite>Block-Recurrent Dynamics in ViTs</cite>
+        </a><br>
+        <em>Accepted to ICLR 2026</em>.
+        <p>
+          We introduce the Block-Recurrent Hypothesis (BRH), arguing that trained ViTs admit a block-recurrent depth
+          structure.
+          To validate this, we train recurrent surrogates called Raptor. We demonstrate that a Raptor model can recover
+          <strong>96% of DINOv2 ImageNet-1k linear probe accuracy in only 2 blocks</strong> while maintaining equivalent
+          computational cost.
+        </p>
+      </div>
+    </div>
   </li>
+
   <li>
-    <strong>Jacobs M.</strong>, Budzinski RC., Muller L., Ba D., Keller TA. (2025).<br>
-    <a href="https://openreview.net/pdf?id=QEzqo546V5">
-      <cite>Traveling Waves Integrate Spatial Information Through Time</cite>
-    </a><br>
-    <em>CCN 2025</em>.
-    <p>
-      <img src="traveling_waves.gif" alt="Traveling Waves" style="max-width: 100%; height: auto; margin: 10px 0;">
-    </p>
+    <div class="publication-item">
+      <div class="publication-image">
+        <img src="traveling_waves.gif" alt="Traveling Waves">
+      </div>
+      <div class="publication-content">
+        <strong>Jacobs M.</strong>, Budzinski RC., Muller L., Ba D., Keller TA. (2025).<br>
+        <a href="https://openreview.net/pdf?id=QEzqo546V5">
+          <cite>Traveling Waves Integrate Spatial Information Through Time</cite>
+        </a><br>
+        <em>CCN 2025</em>.
+      </div>
+    </div>
   </li>
+
   <li>
-    <strong>Jacobs M.</strong>, Budzinski RC., Muller L., Ba D., Keller TA. (2025).<br>
-    <a href="https://arxiv.org/abs/2502.06034">
-      <cite>Traveling Waves Integrate Spatial Information Into Spectral Representations</cite>
-    </a><br>
-    <em>ICLR 2025 Re-Align Workshop</em>.
+    <div class="publication-item">
+      <div class="publication-content">
+        <strong>Jacobs M.</strong>, Budzinski RC., Muller L., Ba D., Keller TA. (2025).<br>
+        <a href="https://arxiv.org/abs/2502.06034">
+          <cite>Traveling Waves Integrate Spatial Information Into Spectral Representations</cite>
+        </a><br>
+        <em>ICLR 2025 Re-Align Workshop</em>.
+      </div>
+    </div>
   </li>
+
   <li>
-    <strong>Jacobs M.</strong>, Brunton BW., Brunton SL., Kutz JN., Raut RV. (2023).<br>
-    <a href="https://arxiv.org/abs/2310.04832">
-      <cite>HyperSINDY: Deep Generative Modeling of Nonlinear Stochastic Governing Equations</cite>
-    </a>
+    <div class="publication-item">
+      <div class="publication-content">
+        <strong>Jacobs M.</strong>, Brunton BW., Brunton SL., Kutz JN., Raut RV. (2023).<br>
+        <a href="https://arxiv.org/abs/2310.04832">
+          <cite>HyperSINDY: Deep Generative Modeling of Nonlinear Stochastic Governing Equations</cite>
+        </a>
+      </div>
+    </div>
   </li>
+
   <li>
-    <strong>Jacobs M.</strong>, Jiang LP., Rao RP. (2022).<br>
-    <a href="https://mozesjacobs.github.io/gopc.pdf">
-      <cite>Gradient Origin Predictive Coding</cite>
-    </a><br>
-    Undergraduate senior thesis.
+    <div class="publication-item">
+      <div class="publication-content">
+        <strong>Jacobs M.</strong>, Jiang LP., Rao RP. (2022).<br>
+        <a href="https://mozesjacobs.github.io/gopc.pdf">
+          <cite>Gradient Origin Predictive Coding</cite>
+        </a><br>
+        Undergraduate senior thesis.
+      </div>
+    </div>
   </li>
 </ol>
