@@ -83,6 +83,28 @@
             style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
             <tbody>
 
+              <!-- Paper 0: Attention Sinks -->
+              <tr>
+                <td style="padding:20px;width:25%;vertical-align:middle;text-align:center">
+                  <span style="display:inline-block;width:160px;box-sizing:border-box;text-align:center;background-color:#fce8e8;color:#9b1c1c;padding:6px 10px;border-radius:4px;font-weight:600;font-size:1em;margin-bottom:10px;">UNDER REVIEW</span>
+                  <br>
+                  <img src="attention_sinks.png" alt="attention_sinks" width="160" height="150">
+                </td>
+                <td style="padding:20px;width:75%;vertical-align:middle">
+                  <papertitle>Duality of Attention Sinks: Two Algorithms, Two Solutions</papertitle>
+                  <br>
+                  Lukas Fesser*,
+                  <strong>Mozes Jacobs*</strong>,
+                  Thomas Fel*,
+                  Andy Keller,
+                  Sham Kakade
+                  <br>
+                  <p>
+                    Attention sinks share a visual signature but hide two distinct algorithms: <strong>nop</strong>, where a head suppresses its update by routing to a null token, and <strong>broadcast</strong>, where a sink aggregates and redistributes global information. Each mechanism leaves distinct traces — nop sinks have negligible value norms; broadcast sinks induce low-rank outputs — which we use to derive practical diagnostics. Applied to pretrained vision transformers, we find both mechanisms coexist at scale. Gating and registers, the two dominant interventions, each implicitly target only one mechanism; combining them yields complementary gains. Training LeJepa with both gating and registers improves downstream semantic segmentation performance beyond either alone.
+                  </p>
+                </td>
+              </tr>
+
               <!-- Paper 1: Block-Recurrent Dynamics -->
               <tr>
                 <td style="padding:20px;width:25%;vertical-align:middle;text-align:center">
