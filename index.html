@@ -83,6 +83,30 @@
             style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
             <tbody>
 
+              <!-- Paper T-REX -->
+              <tr>
+                <td style="padding:20px;width:25%;vertical-align:middle;text-align:center">
+                  <span style="display:inline-block;width:160px;box-sizing:border-box;text-align:center;background-color:#fce8e8;color:#9b1c1c;padding:6px 10px;border-radius:4px;font-weight:600;font-size:1em;margin-bottom:10px;">UNDER REVIEW</span>
+                  <br>
+                  <img src="t-rex_logo.png" alt="t-rex" width="160" height="150">
+                </td>
+                <td style="padding:20px;width:75%;vertical-align:middle">
+                  <papertitle>T-REX: Tied Recurrence Extraction</papertitle>
+                  <br>
+                  <strong>Mozes Jacobs</strong>,
+                  T. Andy Keller,
+                  Thomas Fel,
+                  Bingbin Liu,
+                  Richard Hakim,
+                  Yilun Du,
+                  Demba Ba
+                  <br>
+                  <p>
+                    We introduce <em>Tied Recurrence Extraction</em> (T-REX), an optimization method for <strong>looped transformers</strong> that bridges untied and tied training. T-REX trains layers with independent parameters and periodically projects them toward their shared parameter-wise mean, allowing optimization to benefit from untied flexibility while encouraging convergence to a recurrent computation. At inference time, weights are projected to their hard mean and run as a weight-tied, looped network. T-REX improves out-of-distribution generalization on algorithmic reasoning tasks including soft distance propagation, maze solving, and in-context graph traversal, where it learns more stable iterative rules than both untied and tied-weight transformer baselines.
+                  </p>
+                </td>
+              </tr>
+
               <!-- Paper 0: Attention Sinks -->
               <tr>
                 <td style="padding:20px;width:25%;vertical-align:middle;text-align:center">
@@ -91,7 +115,7 @@
                   <img src="attention_sinks.png" alt="attention_sinks" width="160" height="150">
                 </td>
                 <td style="padding:20px;width:75%;vertical-align:middle">
-                  <papertitle>Duality of Attention Sinks: Two Algorithms, Two Solutions</papertitle>
+                  <papertitle>A Unifying View of Attention Sinks: Two Algorithms, Two Solutions</papertitle>
                   <br>
                   Lukas Fesser*,
                   <strong>Mozes Jacobs*</strong>,
