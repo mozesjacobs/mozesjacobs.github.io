@@ -1,295 +1,331 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>Mozes Jacobs</title>
-  <meta name="author" content="Mozes Jacobs">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mozes Jacobs – Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
-
 <body>
-  <table
-    style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-    <tbody>
-      <tr style="padding:0px">
-        <td style="padding:0px">
-          <table
-            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-              <tr style="padding:0px">
-                <td style="padding:2.5%;width:63%;vertical-align:middle">
-                  <p style="text-align:center">
-                    <name>Mozes Jacobs</name>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const Icon = ({ children, className = "w-6 h-6" }) => (
+      <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24"
+        fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        {children}
+      </svg>
+    );
+    const Mail = ({ className }) => (
+      <Icon className={className}>
+        <rect width="20" height="16" x="2" y="4" rx="2"/>
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+      </Icon>
+    );
+    const FileText = ({ className }) => (
+      <Icon className={className}>
+        <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/>
+        <path d="M14 2v4a2 2 0 0 0 2 2h4"/>
+        <path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>
+      </Icon>
+    );
+    const GraduationCap = ({ className }) => (
+      <Icon className={className}>
+        <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+        <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+      </Icon>
+    );
+    const Twitter = ({ className }) => (
+      <Icon className={className}>
+        <path d="M4 4l16 16M4 20L20 4"/>
+      </Icon>
+    );
+    const Linkedin = ({ className }) => (
+      <Icon className={className}>
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/>
+        <rect width="4" height="12" x="2" y="9"/>
+        <circle cx="4" cy="4" r="2"/>
+      </Icon>
+    );
+    const ExternalLink = ({ className }) => (
+      <Icon className={className}>
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        <polyline points="15 3 21 3 21 9"/>
+        <line x1="10" y1="14" x2="21" y2="3"/>
+      </Icon>
+    );
+
+    // --- DATA ---
+    const interests = ["Representation Learning", "Interpretability", "Foundation Models"];
+
+    const selectedPublications = [
+      {
+        title: "Block-Recurrent Dynamics in ViTs",
+        authors: ["Mozes Jacobs*", "Thomas Fel*", "Richard Hakim*", "Alessandra Brondetta", "Demba Ba", "T. Andy Keller"],
+        badges: ["ICLR 2026"],
+        description: "We introduce the Block-Recurrent Hypothesis (BRH), arguing that trained ViTs admit a block-recurrent depth structure. To validate this, we train recurrent surrogates called Raptor. We demonstrate that a Raptor model can recover 96% of DINOv2 ImageNet-1k linear probe accuracy in only 2 blocks while maintaining equivalent runtime. We leverage our hypothesis to perform dynamical interpretability, revealing directional convergence into class-dependent basins, token-specific trajectory dynamics, and low-rank attractor structure in late layers.",
+        links: [{ name: "arXiv", url: "https://arxiv.org/abs/2512.19941" }],
+        image: "raptor.png"
+      },
+      {
+        title: "A Unifying View of Attention Sinks: Two Algorithms, Two Solutions",
+        authors: ["Lukas Fesser*", "Mozes Jacobs*", "Thomas Fel*", "Andy Keller", "Sham Kakade"],
+        badges: ["UNDER REVIEW"],
+        description: "Attention sinks share a visual signature but hide two distinct algorithms: nop, where a head suppresses its update by routing to a null token, and broadcast, where a sink aggregates and redistributes global information. Each mechanism leaves distinct traces — nop sinks have negligible value norms; broadcast sinks induce low-rank outputs — which we use to derive practical diagnostics. Applied to pretrained vision transformers, we find both mechanisms coexist at scale. Gating and registers, the two dominant interventions, each implicitly target only one mechanism; combining them yields complementary gains.",
+        links: [],
+        image: "attention_sinks.png"
+      }
+    ];
+
+    const publications = [
+      {
+        title: "T-REX: Tied Recurrence Extraction",
+        authors: ["Mozes Jacobs", "T. Andy Keller", "Thomas Fel", "Bingbin Liu", "Richard Hakim", "Yilun Du", "Demba Ba"],
+        badges: ["UNDER REVIEW"],
+        description: "We introduce Tied Recurrence Extraction (T-REX), an optimization method for looped transformers that bridges untied and tied training. T-REX trains layers with independent parameters and periodically projects them toward their shared parameter-wise mean, allowing optimization to benefit from untied flexibility while encouraging convergence to a recurrent computation. At inference time, weights are projected to their hard mean and run as a weight-tied, looped network. T-REX improves out-of-distribution generalization on algorithmic reasoning tasks including soft distance propagation, maze solving, and in-context graph traversal.",
+        links: [],
+        image: "t-rex_logo.png"
+      },
+      {
+        title: "Traveling Waves Integrate Spatial Information Through Time",
+        authors: ["Mozes Jacobs", "Robert C. Budzinski", "Lyle Muller", "Demba Ba", "T. Andy Keller"],
+        badges: ["CCN 2025", "ORAL"],
+        description: "We investigate how traveling waves of neural activity enable spatial information integration in convolutional recurrent networks. Our models learn to generate traveling waves in response to visual stimuli, effectively expanding receptive fields of locally connected neurons. This mechanism significantly outperforms local feed-forward networks on semantic segmentation tasks requiring global spatial context, achieving comparable performance to non-local U-Nets while using significantly fewer parameters.",
+        links: [
+          { name: "PDF", url: "https://openreview.net/pdf?id=QEzqo546V5" },
+          { name: "Blog", url: "https://kempnerinstitute.harvard.edu/research/deeper-learning/traveling-waves-integrate-spatial-information-through-time/" },
+          { name: "Talk", url: "https://youtu.be/ePNrhdT9cqQ?si=xFrdlLSSUaLa6oYl&t=588" }
+        ],
+        image: "traveling_waves.gif"
+      },
+      {
+        title: "HyperSINDy: Deep Generative Modeling of Nonlinear Stochastic Governing Equations",
+        authors: ["Mozes Jacobs", "Bingni W. Brunton", "Steven L. Brunton", "J. Nathan Kutz", "Ryan V. Raut"],
+        badges: ["PREPRINT"],
+        description: "HyperSINDy is a deep generative framework for discovering stochastic governing equations from data. A variational encoder and hypernetwork produce sparse differential equations — learned via a trainable binary mask — whose coefficients are driven by Gaussian white noise. HyperSINDy accurately recovers ground-truth stochastic dynamics and provides uncertainty quantification that scales to high-dimensional systems.",
+        links: [{ name: "arXiv", url: "https://arxiv.org/abs/2310.04832" }],
+        image: "lorenz.png"
+      }
+    ];
+
+    const otherWork = [
+      {
+        title: "Traveling Waves Integrate Spatial Information Into Spectral Representations",
+        authors: ["Mozes Jacobs", "Robert C. Budzinski", "Lyle Muller", "Demba Ba", "T. Andy Keller"],
+        venue: "ICLR 2025 Re-Align Workshop",
+        url: "https://arxiv.org/abs/2502.06034"
+      },
+      {
+        title: "Gradient Origin Predictive Coding",
+        authors: ["Mozes Jacobs", "Linxing Preston Jiang", "Rajesh N.P. Rao"],
+        venue: "Undergraduate senior thesis, 2022",
+        url: "https://mozesjacobs.github.io/gopc.pdf"
+      }
+    ];
+
+    // --- HELPER COMPONENTS ---
+
+    const HighlightAuthors = ({ authors }) => (
+      <p className="text-sm text-slate-400 font-medium leading-relaxed">
+        {authors.map((author, idx) => (
+          <span key={idx} className={author.includes("Mozes Jacobs") ? "text-indigo-300 font-semibold" : ""}>
+            {author}{idx < authors.length - 1 ? ", " : ""}
+          </span>
+        ))}
+      </p>
+    );
+
+    const badgeStyles = {
+      "UNDER REVIEW": "bg-red-900/30 text-red-400 border-red-500/20",
+      "ICLR 2026":    "bg-amber-900/30 text-amber-400 border-amber-500/20",
+      "CCN 2025":     "bg-emerald-900/30 text-emerald-400 border-emerald-500/20",
+      "ORAL":         "bg-emerald-900/30 text-emerald-400 border-emerald-500/20",
+      "PREPRINT":     "bg-violet-900/30 text-violet-400 border-violet-500/20",
+    };
+
+    const Badges = ({ badges }) => (
+      <div className="flex flex-col gap-1.5 items-center">
+        {badges.map((b, i) => {
+          const cls = badgeStyles[b] || "bg-indigo-500/10 text-indigo-400 border-indigo-500/20";
+          return (
+            <span key={i} className={`w-28 text-center py-1 text-xs font-bold tracking-wider rounded-md border uppercase ${cls}`}>
+              {b}
+            </span>
+          );
+        })}
+      </div>
+    );
+
+    const PubCard = ({ pub, className = "" }) => (
+      <article className={`group relative bg-slate-900/50 hover:bg-slate-800/50 border border-slate-800 hover:border-indigo-500/30 p-5 rounded-2xl transition-all duration-300 flex flex-col sm:flex-row sm:items-start gap-5 ${className}`}>
+        <div className="shrink-0 flex flex-col items-center gap-2">
+          <Badges badges={pub.badges} />
+          <div className="w-28 h-24 rounded-xl bg-slate-800/80 overflow-hidden border border-slate-700/50">
+            <img src={pub.image} alt={pub.title} className="w-full h-full object-fill" />
+          </div>
+        </div>
+        <div className="flex-1 space-y-2">
+          <h3 className="text-base font-bold text-slate-100 group-hover:text-indigo-300 transition-colors leading-snug">
+            {pub.title}
+          </h3>
+          <HighlightAuthors authors={pub.authors} />
+          <p className="text-slate-400 text-sm leading-relaxed">{pub.description}</p>
+          {pub.links.length > 0 && (
+            <div className="flex flex-wrap gap-3">
+              {pub.links.map((link, idx) => (
+                <a key={idx} href={link.url} className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-300 hover:text-indigo-400 transition-colors">
+                  {link.name} <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      </article>
+    );
+
+    // --- MAIN APP ---
+
+    function App() {
+      return (
+        <div className="min-h-screen bg-slate-950 text-slate-300 font-sans">
+
+          {/* BACKGROUND BLOBS */}
+          <div className="fixed inset-0 z-0 pointer-events-none">
+            <div className="absolute top-0 left-0 w-96 h-96 rounded-full bg-indigo-900/20 blur-3xl"></div>
+            <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-blue-900/20 blur-3xl"></div>
+          </div>
+
+          {/* NAVBAR */}
+          <nav className="fixed top-0 inset-x-0 z-50 bg-slate-950/80 border-b border-slate-800">
+            <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between gap-6">
+              <div className="flex items-baseline gap-3 shrink-0">
+                <span className="text-xl font-bold text-indigo-400 tracking-tight">Mozes Jacobs</span>
+                <span className="text-sm text-slate-500">मोज़ेस जैकब्स</span>
+              </div>
+              <div className="hidden md:flex items-center gap-2">
+                {interests.map((interest, idx) => (
+                  <span key={idx} className="px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-300 text-xs font-medium border border-indigo-500/20">
+                    {interest}
+                  </span>
+                ))}
+              </div>
+              <div className="flex items-center gap-5 shrink-0">
+                <a href="mailto:mozesjacobs@g.harvard.edu" className="text-slate-400 hover:text-white transition-colors" aria-label="Email"><Mail className="w-5 h-5" /></a>
+                <a href="https://mozesjacobs.github.io/Resume.pdf" className="text-slate-400 hover:text-white transition-colors" aria-label="CV"><FileText className="w-5 h-5" /></a>
+                <a href="https://scholar.google.co.uk/citations?user=8Dm0KfQAAAAJ&hl=en&oi=ao" className="text-slate-400 hover:text-white transition-colors" aria-label="Google Scholar"><GraduationCap className="w-5 h-5" /></a>
+                <a href="https://x.com/mozesjacobs" className="text-slate-400 hover:text-white transition-colors" aria-label="Twitter"><Twitter className="w-5 h-5" /></a>
+                <a href="https://www.linkedin.com/in/mozesjacobs/" className="text-slate-400 hover:text-white transition-colors" aria-label="LinkedIn"><Linkedin className="w-5 h-5" /></a>
+              </div>
+            </div>
+          </nav>
+
+          <main className="relative z-10 max-w-5xl mx-auto px-6 pt-24 pb-16">
+
+            {/* HERO */}
+            <section>
+              <div className="flex flex-col md:flex-row gap-8 items-start md:items-center">
+                <div className="flex-1 space-y-4">
+                  <p className="text-xl md:text-2xl text-slate-400 leading-relaxed max-w-2xl">
+                    I am a third-year computer science PhD candidate at{" "}
+                    <a href="https://www.harvard.edu" className="text-slate-200 font-medium hover:text-indigo-300 transition-colors">Harvard University</a>,
+                    advised by Professor{" "}
+                    <a href="http://www.demba-ba.org" className="text-slate-200 font-medium hover:text-indigo-300 transition-colors">Demba Ba</a>.
+                    I am supported by the{" "}
+                    <a href="https://www.harvard.edu/kempner-institute/opportunities/the-kempner-institute-graduate-fellowship/" className="text-slate-200 font-medium hover:text-indigo-300 transition-colors">Kempner Institute Graduate Fellowship</a>.
                   </p>
-                  <p>
-                    I am a third-year computer science PhD candidate at <a href="https://www.harvard.edu">Harvard
-                      University</a>, advised by Professor <a href="http://www.demba-ba.org">Demba Ba</a>. I am
-                    supported by the <a
-                      href="https://www.harvard.edu/kempner-institute/opportunities/the-kempner-institute-graduate-fellowship/">Kempner
-                      Institute Graduate Fellowship</a>.
-                  </p>
-                  <p style="line-height:2;">
-                    <span
-                      style="display:inline-block;background-color:#e8f4f8;color:#2c5282;padding:4px 12px;border-radius:4px;margin-right:8px;font-weight:600;">Representation
-                      Learning</span><span
-                      style="display:inline-block;background-color:#f0e8f8;color:#553c7b;padding:4px 12px;border-radius:4px;margin-right:8px;font-weight:600;">Interpretability</span><span
-                      style="display:inline-block;background-color:#e8f8ee;color:#276749;padding:4px 12px;border-radius:4px;font-weight:600;">Foundation
-                      Models</span>
-                  </p>
-                  <p>
-                    I study the foundations of deep learning, with a focus on <strong>representation learning</strong> and <strong>interpretability</strong>. My research aims to understand what neural networks learn and the principles that govern why those representations emerge. I pursue both a mechanistic understanding of how networks compute and a normative understanding of why they learn what they do. Ultimately, I aim to use these insights to improve the efficiency, generalization, and safety of neural systems.
-                  </p>
-                  <p>
-                    Previously, I worked at the <a href="https://dynamicsai.org">AI Institute in Dynamic Systems</a>
-                    with <a href="https://amath.washington.edu/people/j-nathan-kutz">Nathan Kutz</a> and <a
-                      href="https://ryraut.github.io">Ryan Raut</a>. I earned my B.S. in computer science from the <a
-                      href="https://www.cs.washington.edu">Allen School</a> at the <a
-                      href="https://www.washington.edu">University of Washington</a>, where I worked with <a
-                      href="https://www.rajeshpnrao.com">Rajesh Rao</a> and <a
-                      href="https://noble.gs.washington.edu/~wnoble/">William Noble</a>.
-                  </p>
-                  <p style="text-align:center">
-                    <a href="mailto:mozesjacobs@g.harvard.edu">Email</a> &nbsp/&nbsp
-                    <a href="Resume.pdf">CV</a> &nbsp/&nbsp
-                    <a href="https://scholar.google.co.uk/citations?user=8Dm0KfQAAAAJ&hl=en&oi=ao">Google Scholar</a>
-                    &nbsp/&nbsp
-                    <a href="https://x.com/mozesjacobs">Twitter</a> &nbsp/&nbsp
-                    <a href="https://www.linkedin.com/in/mozesjacobs/">LinkedIn</a>
-                  </p>
-                </td>
-                <td style="padding:2.5%;width:40%;max-width:40%">
-                  <a href="mozes3.jpg"><img style="width:100%;max-width:100%" alt="profile photo" src="mozes3.jpg"
-                      class="hoverZoomLink"></a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
 
-          <table
-            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-              <tr>
-                <td style="padding:20px;width:100%;vertical-align:middle">
-                  <heading>Publications</heading>
-                  <p>* denotes equal contribution</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  <div className="inline-flex items-center gap-3 bg-white/90 rounded-xl px-4 py-2.5 max-w-fit">
+                    <span className="text-base text-slate-700 font-medium whitespace-nowrap">This summer, I am working as a Research Fellow at</span>
+                    <a href="https://www.goodfire.ai" className="hover:opacity-80 transition-opacity shrink-0">
+                      <img src="goodfire_logo.svg" alt="Goodfire AI" className="h-6" />
+                    </a>
+                  </div>
 
-          <table
-            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
+                </div>
 
-              <!-- Paper T-REX -->
-              <tr>
-                <td style="padding:20px;width:25%;vertical-align:middle;text-align:center">
-                  <span style="display:inline-block;width:160px;box-sizing:border-box;text-align:center;background-color:#fce8e8;color:#9b1c1c;padding:6px 10px;border-radius:4px;font-weight:600;font-size:1em;margin-bottom:10px;">UNDER REVIEW</span>
-                  <br>
-                  <img src="t-rex_logo.png" alt="t-rex" width="160" height="150">
-                </td>
-                <td style="padding:20px;width:75%;vertical-align:middle">
-                  <papertitle>T-REX: Tied Recurrence Extraction</papertitle>
-                  <br>
-                  <strong>Mozes Jacobs</strong>,
-                  T. Andy Keller,
-                  Thomas Fel,
-                  Bingbin Liu,
-                  Richard Hakim,
-                  Yilun Du,
-                  Demba Ba
-                  <br>
-                  <p>
-                    We introduce <em>Tied Recurrence Extraction</em> (T-REX), an optimization method for <strong>looped transformers</strong> that bridges untied and tied training. T-REX trains layers with independent parameters and periodically projects them toward their shared parameter-wise mean, allowing optimization to benefit from untied flexibility while encouraging convergence to a recurrent computation. At inference time, weights are projected to their hard mean and run as a weight-tied, looped network. T-REX improves out-of-distribution generalization on algorithmic reasoning tasks including soft distance propagation, maze solving, and in-context graph traversal, where it learns more stable iterative rules than both untied and tied-weight transformer baselines.
-                  </p>
-                </td>
-              </tr>
+                <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border border-slate-800 flex-shrink-0">
+                  <img src="mozes3.jpg" alt="Mozes Jacobs" className="w-full h-full object-cover" />
+                </div>
+              </div>
+            </section>
 
-              <!-- Paper 0: Attention Sinks -->
-              <tr>
-                <td style="padding:20px;width:25%;vertical-align:middle;text-align:center">
-                  <span style="display:inline-block;width:160px;box-sizing:border-box;text-align:center;background-color:#fce8e8;color:#9b1c1c;padding:6px 10px;border-radius:4px;font-weight:600;font-size:1em;margin-bottom:10px;">UNDER REVIEW</span>
-                  <br>
-                  <img src="attention_sinks.png" alt="attention_sinks" width="160" height="150">
-                </td>
-                <td style="padding:20px;width:75%;vertical-align:middle">
-                  <papertitle>A Unifying View of Attention Sinks: Two Algorithms, Two Solutions</papertitle>
-                  <br>
-                  Lukas Fesser*,
-                  <strong>Mozes Jacobs*</strong>,
-                  Thomas Fel*,
-                  Andy Keller,
-                  Sham Kakade
-                  <br>
-                  <p>
-                    Attention sinks share a visual signature but hide two distinct algorithms: <strong>nop</strong>, where a head suppresses its update by routing to a null token, and <strong>broadcast</strong>, where a sink aggregates and redistributes global information. Each mechanism leaves distinct traces — nop sinks have negligible value norms; broadcast sinks induce low-rank outputs — which we use to derive practical diagnostics. Applied to pretrained vision transformers, we find both mechanisms coexist at scale. Gating and registers, the two dominant interventions, each implicitly target only one mechanism; combining them yields complementary gains. Training LeJepa with both gating and registers improves downstream semantic segmentation performance beyond either alone.
-                  </p>
-                </td>
-              </tr>
+            {/* ABOUT */}
+            <section id="about" className="mt-5 space-y-4 text-lg text-slate-400 leading-relaxed font-light">
+              <p>
+                I study the foundations of deep learning, with a focus on{" "}
+                <span className="text-slate-200 font-medium">representation learning</span> and{" "}
+                <span className="text-slate-200 font-medium">interpretability</span>.
+                My research aims to understand what neural networks learn and the principles that govern why those representations emerge.
+                I pursue both a mechanistic understanding of how networks compute and a normative understanding of why they learn what they do.
+                Ultimately, I aim to use these insights to improve the efficiency, generalization, and safety of neural systems.
+              </p>
+              <p>
+                Previously, I worked at the{" "}
+                <a href="https://dynamicsai.org" className="text-slate-300 hover:text-indigo-300 transition-colors">AI Institute in Dynamic Systems</a>{" "}
+                with <a href="https://amath.washington.edu/people/j-nathan-kutz" className="text-slate-300 hover:text-indigo-300 transition-colors">Nathan Kutz</a> and{" "}
+                <a href="https://ryraut.github.io" className="text-slate-300 hover:text-indigo-300 transition-colors">Ryan Raut</a>.
+                I earned my B.S. in computer science from the{" "}
+                <a href="https://www.cs.washington.edu" className="text-slate-300 hover:text-indigo-300 transition-colors">Allen School</a> at the{" "}
+                <a href="https://www.washington.edu" className="text-slate-300 hover:text-indigo-300 transition-colors">University of Washington</a>,
+                where I worked with{" "}
+                <a href="https://www.rajeshpnrao.com" className="text-slate-300 hover:text-indigo-300 transition-colors">Rajesh Rao</a> and{" "}
+                <a href="https://noble.gs.washington.edu/~wnoble/" className="text-slate-300 hover:text-indigo-300 transition-colors">William Noble</a>.
+              </p>
+            </section>
 
-              <!-- Paper 1: Block-Recurrent Dynamics -->
-              <tr>
-                <td style="padding:20px;width:25%;vertical-align:middle;text-align:center">
-                  <span style="display:inline-block;width:160px;box-sizing:border-box;text-align:center;background-color:#fff3e0;color:#b45309;padding:6px 10px;border-radius:4px;font-weight:600;font-size:1em;margin-bottom:10px;">ICLR 2026</span>
-                  <br>
-                  <img src="raptor.png" alt="raptor" width="160">
-                </td>
-                <td style="padding:20px;width:75%;vertical-align:middle">
-                  <a href="https://arxiv.org/abs/2512.19941">
-                    <papertitle>Block-Recurrent Dynamics in ViTs</papertitle>
-                  </a>
-                  <br>
-                  <strong>Mozes Jacobs*</strong>,
-                  Thomas Fel*,
-                  Richard Hakim*,
-                  Alessandra Brondetta,
-                  Demba Ba,
-                  T. Andy Keller
-                  <br>
-                  <p>
-                    We introduce the Block-Recurrent Hypothesis (BRH), arguing that trained ViTs admit a block-recurrent
-                    depth structure. To validate this, we train recurrent surrogates called Raptor. We demonstrate that
-                    a Raptor model can recover <strong>96% of DINOv2 ImageNet-1k linear probe accuracy in only 2
-                      blocks</strong> while maintaining equivalent runtime. We leverage our hypothesis to
-                    perform dynamical interpretability, revealing directional convergence into class-dependent basins,
-                    token-specific trajectory dynamics, and low-rank attractor structure in late layers.
-                  </p>
-                </td>
-              </tr>
+            {/* SELECTED PUBLICATIONS */}
+            <section id="publications" className="mt-12 pt-10 border-t border-slate-800">
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-6">
+                <h2 className="text-3xl font-bold text-white tracking-tight">Selected Publications</h2>
+                <p className="text-sm text-slate-500 mt-2 sm:mt-0 font-mono">* denotes equal contribution</p>
+              </div>
+              <div className="space-y-4">
+                {selectedPublications.map((pub, idx) => (
+                  <PubCard key={idx} pub={pub} />
+                ))}
+              </div>
+            </section>
 
-              <!-- Paper 2: Traveling Waves (CCN) -->
-              <tr>
-                <td style="padding:20px;width:25%;vertical-align:middle;text-align:center">
-                  <span style="display:inline-block;width:160px;box-sizing:border-box;text-align:center;background-color:#e8f8ee;color:#276749;padding:6px 10px;border-radius:4px;font-weight:600;font-size:1em;margin-bottom:10px;">CCN 2025 (Oral)</span>
-                  <br>
-                  <img src="traveling_waves.gif" alt="traveling_waves" width="160">
-                </td>
-                <td style="padding:20px;width:75%;vertical-align:middle">
-                  <a href="https://openreview.net/pdf?id=QEzqo546V5">
-                    <papertitle>Traveling Waves Integrate Spatial Information Through Time</papertitle>
-                  </a>
-                  <br>
-                  <strong>Mozes Jacobs</strong>,
-                  Robert C. Budzinski,
-                  Lyle Muller,
-                  Demba Ba,
-                  T. Andy Keller
-                  <br>
-                  <a
-                    href="https://kempnerinstitute.harvard.edu/research/deeper-learning/traveling-waves-integrate-spatial-information-through-time/">blog</a>
-                  /
-                  <a href="https://youtu.be/ePNrhdT9cqQ?si=xFrdlLSSUaLa6oYl&t=588">talk</a>
-                  <p>
-                    We investigate how traveling waves of neural activity enable spatial information integration in
-                    convolutional recurrent networks. Our models learn to generate traveling waves in response to visual
-                    stimuli, effectively expanding receptive fields of locally connected neurons. This mechanism
-                    significantly outperforms local feed-forward networks on semantic segmentation tasks requiring
-                    global spatial context, achieving comparable performance to non-local U-Nets while using
-                    significantly fewer parameters.
-                  </p>
-                </td>
-              </tr>
+            {/* ALL PUBLICATIONS */}
+            <section className="mt-10 pt-10 border-t border-slate-800">
+              <h2 className="text-3xl font-bold text-white tracking-tight mb-6">Publications</h2>
+              <div className="space-y-4">
+                {publications.map((pub, idx) => (
+                  <PubCard key={idx} pub={pub} />
+                ))}
+              </div>
+              <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-slate-800/50 pt-6">
+                {otherWork.map((work, idx) => (
+                  <div key={idx} className="p-6 rounded-2xl bg-slate-900/30 border border-slate-800 hover:border-slate-700 transition-colors">
+                    <a href={work.url} className="text-lg font-medium text-slate-200 hover:text-indigo-300 transition-colors mb-2 block">{work.title}</a>
+                    <HighlightAuthors authors={work.authors} />
+                    <p className="text-sm text-slate-500 mt-3">{work.venue}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
 
-              <!-- Paper 3: HyperSINDy -->
-              <tr>
-                <td style="padding:20px;width:25%;vertical-align:middle;text-align:center">
-                  <span style="display:inline-block;width:160px;box-sizing:border-box;text-align:center;background-color:#f0e8f8;color:#553c7b;padding:6px 10px;border-radius:4px;font-weight:600;font-size:1em;margin-bottom:10px;">PREPRINT</span>
-                  <br>
-                  <img src="lorenz.png" alt="lorenz" width="160" height="150">
-                </td>
-                <td style="padding:20px;width:75%;vertical-align:middle">
-                  <a href="https://arxiv.org/abs/2310.04832">
-                    <papertitle>HyperSINDy: Deep Generative Modeling of Nonlinear Stochastic Governing Equations</papertitle>
-                  </a>
-                  <br>
-                  <strong>Mozes Jacobs</strong>,
-                  Bingni W. Brunton,
-                  Steven L. Brunton,
-                  J. Nathan Kutz,
-                  Ryan V. Raut
-                  <br>
-                  <em>arXiv</em>, 2023
-                  <p>
-                    HyperSINDy is a deep generative framework for discovering stochastic governing equations from data. A variational encoder and hypernetwork produce sparse differential equations — learned via a trainable binary mask — whose coefficients are driven by Gaussian white noise. HyperSINDy accurately recovers ground-truth stochastic dynamics and provides uncertainty quantification that scales to high-dimensional systems.
-                  </p>
-                </td>
-              </tr>
+          </main>
 
-            </tbody>
-          </table>
+          {/* FOOTER */}
+          <footer className="mt-10 border-t border-slate-800 bg-slate-950">
+            <div className="max-w-5xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-sm text-slate-500">© {new Date().getFullYear()} Mozes Jacobs. All rights reserved.</p>
+              <div className="flex gap-4">
+                <a href="mailto:mozesjacobs@g.harvard.edu" className="text-slate-500 hover:text-slate-300 transition-colors">Email</a>
+                <a href="https://scholar.google.co.uk/citations?user=8Dm0KfQAAAAJ&hl=en&oi=ao" className="text-slate-500 hover:text-slate-300 transition-colors">Scholar</a>
+                <a href="https://x.com/mozesjacobs" className="text-slate-500 hover:text-slate-300 transition-colors">Twitter</a>
+              </div>
+            </div>
+          </footer>
+        </div>
+      );
+    }
 
-          <table
-            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-              <tr>
-                <td style="padding:20px;width:100%;vertical-align:middle">
-                  <heading>Other Work</heading>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <table
-            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-
-              <!-- Paper 3: Traveling Waves (Workshop) -->
-              <tr>
-                <td style="padding:20px;width:25%;vertical-align:middle">
-                </td>
-                <td style="padding:20px;width:75%;vertical-align:middle">
-                  <a href="https://arxiv.org/abs/2502.06034">
-                    <papertitle>Traveling Waves Integrate Spatial Information Into Spectral Representations</papertitle>
-                  </a>
-                  <br>
-                  <strong>Mozes Jacobs</strong>,
-                  Robert C. Budzinski,
-                  Lyle Muller,
-                  Demba Ba,
-                  T. Andy Keller
-                  <br>
-                  <em>ICLR 2025 Re-Align Workshop</em>
-                </td>
-              </tr>
-
-              <!-- Paper 5: GOPC -->
-              <tr>
-                <td style="padding:20px;width:25%;vertical-align:middle">
-                </td>
-                <td style="padding:20px;width:75%;vertical-align:middle">
-                  <a href="https://mozesjacobs.github.io/gopc.pdf">
-                    <papertitle>Gradient Origin Predictive Coding</papertitle>
-                  </a>
-                  <br>
-                  <strong>Mozes Jacobs</strong>,
-                  Linxing Preston Jiang,
-                  Rajesh N.P. Rao
-                  <br>
-                  <em>Undergraduate senior thesis</em>, 2022
-                </td>
-              </tr>
-
-            </tbody>
-          </table>
-
-          <table
-            style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-            <tbody>
-              <tr>
-                <td style="padding:0px">
-                  <br>
-                  <p style="text-align:right;font-size:small;">
-                    Website template from <a href="https://github.com/jonbarron/jonbarron.github.io">Jon Barron</a>
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-  </table>
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
 </body>
-
 </html>
