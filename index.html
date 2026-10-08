@@ -35,6 +35,7 @@
     a { color: var(--link); text-decoration: none; }
     a:hover, a:focus { color: var(--link-hover); }
     strong { color: var(--strong); font-weight: 700; }
+    .hl { color: var(--accent-soft); font-weight: 700; }
 
     .page { max-width: 800px; margin: 0 auto; padding: 28px 20px 24px; }
 
@@ -43,6 +44,9 @@
     .intro-text { flex: 1; font-size: 14px; line-height: 1.5; }
     .intro-text p { margin: 0 0 0.6em; }
     .intro-text p:last-child { margin-bottom: 0; }
+    .intro-text .background { font-size: 13px; color: var(--faint); margin-top: 0.9em; }
+    .intro-text .background a { color: var(--muted); }
+    .intro-text .background a:hover { color: var(--link-hover); }
     .intro-photo { flex: 0 0 190px; }
     .intro-photo img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 50%; display: block; }
 
@@ -94,7 +98,7 @@
     .section-head .note { font-size: 13px; color: var(--faint); }
 
     /* ---- papers ---- */
-    .paper { display: flex; gap: 20px; align-items: center; padding: 14px 0; }
+    .paper { display: flex; gap: 20px; align-items: flex-start; padding: 14px 0; }
     .paper + .paper { border-top: 1px solid var(--rule); }
     .paper-side { flex: 0 0 112px; display: flex; flex-direction: column; gap: 5px; }
     .venue {
@@ -104,7 +108,7 @@
       color: var(--muted); background: rgba(139, 148, 158, 0.1); border: 1px solid var(--rule);
     }
     .venue-accepted {
-      color: var(--accent-soft); background: rgba(99, 102, 241, 0.1); border-color: rgba(99, 102, 241, 0.25);
+      color: #fff; background: #5b5bd6; border-color: #7c7ff0;
     }
     .paper-thumb {
       width: 112px; height: 96px; border-radius: 4px; overflow: hidden;
@@ -145,7 +149,7 @@
       .paper { align-items: flex-start; gap: 14px; }
       .paper-side { flex-basis: 84px; }
       .paper-thumb { width: 84px; height: 72px; }
-      .venue { font-size: 10px; }
+      .venue { font-size: 9px; letter-spacing: 0.02em; white-space: nowrap; padding: 3px 2px; }
     }
   </style>
 </head>
@@ -187,23 +191,23 @@
     <div class="intro">
       <div class="intro-text">
         <p>
-          I am a fourth-year computer science PhD candidate at <a href="https://www.harvard.edu">Harvard University</a>,
+          I am a fourth-year PhD candidate at <a href="https://www.harvard.edu">Harvard University</a>,
           advised by Professor <a href="http://www.demba-ba.org">Demba Ba</a>. I am supported by the
           <a href="https://www.harvard.edu/kempner-institute/opportunities/the-kempner-institute-graduate-fellowship/">Kempner Institute Graduate Fellowship</a>. In summer 2026, I worked as a Research Fellow at
           <a href="https://www.goodfire.ai" class="fellow-logo"><img src="goodfire_logo.svg" alt="Goodfire AI"></a>.
         </p>
         <p>
-          I'm interested in the phenomenology of neural representations: their content and geometry, and the mechanisms
-          and principles that give rise to them. Ultimately, I believe understanding model representations is essential for AI safety and alignment.
+          I work on <span class="hl">mechanistic interpretability</span> and <span class="hl">representation learning</span>.
+          I'm interested in the <span class="hl">phenomenology of neural representations</span>: their content and geometry,
+          and the mechanisms and principles by which they arise. Ultimately, I believe understanding model representations is essential for AI safety and alignment.
         </p>
-        <p>
-          Previously, I worked at the <a href="https://dynamicsai.org">AI Institute in Dynamic Systems</a> with
-          <a href="https://amath.washington.edu/people/j-nathan-kutz">Nathan Kutz</a> and
-          <a href="https://ryraut.github.io">Ryan Raut</a>. I earned my B.S. in computer science from the
-          <a href="https://www.cs.washington.edu">Allen School</a> at the
-          <a href="https://www.washington.edu">University of Washington</a>, where I worked with
-          <a href="https://www.rajeshpnrao.com">Rajesh Rao</a> and
-          <a href="https://noble.gs.washington.edu/~wnoble/">William Noble</a>.
+        <p class="background">
+          Previously: <a href="https://dynamicsai.org">AI Institute in Dynamic Systems</a>
+          (<a href="https://amath.washington.edu/people/j-nathan-kutz">Nathan Kutz</a>, <a href="https://ryraut.github.io">Ryan Raut</a>)
+          &nbsp;&middot;&nbsp;
+          B.S. Computer Science, <a href="https://www.cs.washington.edu">Allen School</a>,
+          <a href="https://www.washington.edu">University of Washington</a>
+          (<a href="https://www.rajeshpnrao.com">Rajesh Rao</a>, <a href="https://noble.gs.washington.edu/~wnoble/">William Noble</a>)
         </p>
       </div>
       <div class="intro-photo">
@@ -214,7 +218,7 @@
     <!-- ===== Research ===== -->
     <div class="section-head">
       <h2>Research</h2>
-      <span class="note">* equal contribution</span>
+      <span class="note">* equal contribution &nbsp;&middot;&nbsp; &Dagger; core contributor</span>
     </div>
 
     <!-- VLA Geometry -->
@@ -277,6 +281,76 @@
               to (i) recontextualize prior work, showing that curve detectors in InceptionV1 read from a single continuous
               curve manifold, (ii) discover novel manifolds including shadows and lighting in DINOv3, and (iii) support
               interpretable control of image generation in diffusion models (SDXL) via manifold steering.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- VLA Featurizers -->
+    <div class="paper">
+      <div class="paper-side">
+        <span class="venue">Under review</span>
+        <div class="paper-thumb"><img src="vla_featurizer.jpg" alt="Proprioceptive-state feature manifold"></div>
+      </div>
+      <div class="paper-body">
+        <a href="https://www.goodfire.ai" class="org-tag" title="Goodfire"><img src="goodfire_logo.svg" alt="Goodfire"></a>
+        <span class="paper-title">Multi-Dimensional Featurizers Yield Fine-Grained Steering and Data Shaping in Robot Foundation Models</span>
+        <div class="authors">Aiden Swann&Dagger;, <strong>Mozes Jacobs&Dagger;</strong>, Mathilde Papillon&Dagger;, Siddharth Boppana, David Chanin, Dron Hazra, Usha Bhalla, Curt Tigges, Mac Schwager, Owen Lewis, Jack Merullo, Ekdeep Singh Lubana, Atticus Geiger, Thomas Fel, Matthew Kowal</div>
+        <div class="tldr">Block-sparse featurizers recover multi-dimensional features in VLA models, enabling fine-grained steering and isolating the &lt;1.4% of training tokens behind a specific behavior.</div>
+        <div class="meta">
+          <details><summary>abstract</summary>
+            <p class="abstract">
+              Can better feature discovery improve control over robot behavior through internal interventions and training
+              data? Recent work in vision and language models reveals multidimensional features, motivating block-sparse
+              featurizers (BSFs), which represent each feature in a low-dimensional subspace. We investigate whether
+              recovering this structure provides an interpretable interface for steering vision-language-action models and
+              shaping the data from which they learn. We show that BSFs recover several multi-dimensional task-relevant
+              features underlying the model's computation (e.g., perception, language, proprioceptive state, episode phase,
+              and control variables). We causally validate these features through <strong>fine-grained steering</strong>:
+              targeted changes in visual perception, semantic representation, and spatial localization produce predictable
+              changes in downstream action prediction. Finally, we use feature-based data attribution to isolate where a
+              specific behavior (failure recovery) arises in the training dataset, identifying <strong>fewer than 1.4% of
+              training tokens</strong> whose masking is sufficient to remove the targeted behavior. Overall, our results
+              show how matching featurizers to representation geometry can provide more effective tools for understanding
+              and changing robot behavior.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- VLA Causal Analysis -->
+    <div class="paper">
+      <div class="paper-side">
+        <span class="venue">Under review</span>
+        <div class="paper-thumb"><img src="vla_patching.jpg" alt="Robot arm redirected between a banana and an apple"></div>
+      </div>
+      <div class="paper-body">
+        <a href="https://www.goodfire.ai" class="org-tag" title="Goodfire"><img src="goodfire_logo.svg" alt="Goodfire"></a>
+        <span class="paper-title">Causal Analysis of Robot Foundation Models Enables Efficiency Gains</span>
+        <div class="authors">Aiden Swann&Dagger;, Mathilde Papillon&Dagger;, <strong>Mozes Jacobs&Dagger;</strong>, Siddharth Boppana, Tal Haklay, Eric Bigelow, Andrew Lee, Conor Watts, Thomas Icard, Mac Schwager, Owen Lewis, Jack Merullo, Ekdeep Singh Lubana, Atticus Geiger, Thomas Fel, Matthew Kowal</div>
+        <div class="tldr">Activation patching in three VLA models reveals a narrow band of layers through which perception and language condition action; keeping only that interface cuts compute by 33% at matched success.</div>
+        <div class="meta">
+          <details><summary>abstract</summary>
+            <p class="abstract">
+              Vision-language-action (VLA) models are a promising approach to general purpose robot manipulation. While the
+              internal computation of vision-language models, which compose the backbone of VLAs, has been studied
+              extensively, less is known about how their perceptual and semantic representations are transformed into
+              action in VLA models. We study this question mechanistically in three frontier VLA models (&pi;<sub>0.5</sub>,
+              MolmoAct2, and MolmoBot) by analyzing the causal pathways through which the input image and the instruction
+              shape actions. Across the three models, activation patching shows that causally relevant information
+              influences the action expert (AE) through a narrow band of mid-to-late cross-attention layers, which we term
+              the <em>action-conditioning interface</em>. The content of this information changes with token and layer
+              within the model. Early-to-mid layer representations of the target noun token determine which object is
+              selected, whereas mid-to-late layers carry the spatial information in text tokens that redirects the movement
+              when patched. Where spatial information is stored in prompt tokens varies based on the architecture. In
+              MolmoAct2 the model forms task-conditioned representations at the text positions that follow the instruction,
+              whereas &pi;<sub>0.5</sub> additionally stores this information at image token positions. We show that these
+              findings can be translated directly into improving model efficiency. We find that restricting MolmoBot's
+              action expert conditioning to 3/36 layers <strong>reduces inference FLOPs by up to 33%</strong> while
+              maintaining comparable task success with the default model across more than 3,000 evaluation episodes (46.7%
+              vs. 46.9%), and the same principle carries over to real-robot deployment of &pi;<sub>0.5</sub>.
             </p>
           </details>
         </div>
